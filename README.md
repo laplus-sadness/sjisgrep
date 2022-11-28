@@ -4,7 +4,7 @@ Sjisgrep is an enhanced binary string searcher which uses the [Boyer-Moore strin
 
 ## How to use
 
-Install the application under [the installation section](#installation) and run `sjisgrep` followed by its arguments on the terminal.
+Build the application and run `sjisgrep` followed by its arguments on the terminal.
 
 Output of `sjisgrep --help`:
 
