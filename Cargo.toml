@@ -1,0 +1,13 @@
+[package]
+name = "sjisgrep"
+version = "0.1.0"
+description = "Binary grep with native support for searching in different Japanese encodings"
+authors = ["laplus-sadness <lamaissadness@proton.me>"]
+license = "GPL-3.0-or-later"
+repository = "https://github.com/laplus-sadness/sjisgrep"
+edition = "2021"
+
+
+[dependencies]
+encoding_rs = "0.8.31"
+clap = { version = "4.0.18", features = ["derive"] }
