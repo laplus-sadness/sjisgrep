@@ -33,15 +33,15 @@ Source: [Atelier Marie: The Alchemist of Salburg](https://en.wikipedia.org/wiki/
 ![Marie no Atelier](static/marie_no_atelier.jpg)
 
 ```
-$ sjisgrep 探し Marie\ no\ Atelier\ -\ Salburg\ no\ Renkinjutsushi\ \(Japan\)\ \(Track\ 1\).bin
-0x1C596 "そう。宝探しとか怪物退治とか誰かの護衛とかして一攫千金を狙ってる連中のことさ。"
+$ sjisgrep 参ったなぁ Marie\ no\ Atelier\ -\ Salburg\ no\ Renkinjutsushi\ \(Japan\)\ \(Track\ 1\).bin
+0x1BEB0 "（…夢かぁ。参ったなぁ）"
 ```
 
-The address returned (`0x1C596`) is the address of the first character of the pattern searched (探し). If you need to get the address of the first character of the string found, use the `-b` flag:
+The address returned (`0x1BEB0`) is the address of the first character of the pattern searched (参ったなぁ). If you need to get the address of the first character of the string found, use the `-b` flag:
 
 ```
-$ sjisgrep -b 探し Marie\ no\ Atelier\ -\ Salburg\ no\ Renkinjutsushi\ \(Japan\)\ \(Track\ 1\).bin
-0x1C590 "そう。宝探しとか怪物退治とか誰かの護衛とかして一攫千金を狙ってる連中のことさ。"
+$ sjisgrep -b 参ったなぁ Marie\ no\ Atelier\ -\ Salburg\ no\ Renkinjutsushi\ \(Japan\)\ \(Track\ 1\).bin
+0x1BEA4 "（…夢かぁ。参ったなぁ）"
 ```
 
 ### Search for all instances of a pattern in a binary
