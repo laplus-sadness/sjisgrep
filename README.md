@@ -1,4 +1,4 @@
-# Sjisgrep - Binary grep with native support for searching in different Japanese encodings.
+# Sjisgrep
 
 Sjisgrep is an enhanced binary string searcher which uses the [Boyer-Moore string-search algorithm](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm) and multiple Japanese encodings ([Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS), [EUC-JP](https://en.wikipedia.org/wiki/Extended_Unix_Code#EUC-JP) and [ISO-2022-JP](https://en.wikipedia.org/wiki/ISO/IEC_2022)) to find Japanese text in a binary file, e.g. video game ROMs.
 
@@ -26,7 +26,7 @@ Options:
 
 ## Examples
 
-### Search for text in a ROM:
+### Search for text in a ROM
 
 Source: [Atelier Marie: The Alchemist of Salburg](https://en.wikipedia.org/wiki/Atelier_Marie:_The_Alchemist_of_Salburg).
 
@@ -70,7 +70,7 @@ There are more results, but I omitted them to save space.
 Clone this repo and build it with cargo:
 
 ```
-$ git clone 
+$ git clone https://github.com/laplus-sadness/sjisgrep.git
 $ cd sjisgrep
 $ cargo build --release
 $ ./target/release/sjisgrep --version
