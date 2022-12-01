@@ -37,31 +37,31 @@ impl Encoding {
         }
     }
 
-    fn decode(&self, bytes: &[u8]) -> Result<String, String> {
+    fn decode(&self, bytes: &[u8]) -> Result<String, &str> {
         match self {
             Self::ShiftJis => {
                 let (result, _enc, err) = SHIFT_JIS.decode(bytes);
                 if err {
-                    return Err("Failed to decode the found string to Shift-JIS".to_string());
+                    return Err("Failed to decode the found string to Shift-JIS");
                 }
                 Ok(result.into_owned())
             }
             Self::EucJp => {
                 let (result, _enc, err) = EUC_JP.decode(bytes);
                 if err {
-                    return Err("Failed to decode the found string to EUC-JP".to_string());
+                    return Err("Failed to decode the found string to EUC-JP");
                 }
                 Ok(result.into_owned())
             }
             Self::Iso2022Jp => {
                 let (result, _enc, err) = ISO_2022_JP.decode(bytes);
                 if err {
-                    return Err("Failed to decode the found string to ISO-2022-JP".to_string());
+                    return Err("Failed to decode the found string to ISO-2022-JP");
                 }
                 Ok(result.into_owned())
             }
             Self::Utf8 => Ok(String::from_utf8(bytes.to_vec())
-                .unwrap_or_else(|err| format!("Invalid UTF-8 sequence: {err}"))),
+                .map_err(|_| "Failed to decode the found string to UTF-8")?),
         }
     }
 
@@ -78,9 +78,7 @@ impl Encoding {
             .position(|&i| i == 0)
             .ok_or("Failed to find the end of the string that contains the pattern")?;
         let entire_string_bytes = &text[start - beginning..start + end];
-        let entire_string = self
-            .decode(entire_string_bytes)
-            .unwrap_or_else(|_| "Failed to decode the string found".to_owned());
+        let entire_string = self.decode(entire_string_bytes)?;
         let address = if show_beginning {
             start - beginning
         } else {
