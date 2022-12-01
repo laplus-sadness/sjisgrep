@@ -6,6 +6,7 @@ pub enum Encoding {
     ShiftJis,
     EucJp,
     Iso2022Jp,
+    Utf8,
 }
 
 impl Encoding {
@@ -32,32 +33,35 @@ impl Encoding {
                 }
                 Ok(result.to_vec())
             }
+            Self::Utf8 => Ok(text.as_bytes().to_vec()),
         }
     }
 
-    fn decode(&self, bytes: &[u8]) -> Result<String, &str> {
+    fn decode(&self, bytes: &[u8]) -> Result<String, String> {
         match self {
             Self::ShiftJis => {
                 let (result, _enc, err) = SHIFT_JIS.decode(bytes);
                 if err {
-                    return Err("Failed to decode the found string to Shift-JIS");
+                    return Err("Failed to decode the found string to Shift-JIS".to_string());
                 }
                 Ok(result.into_owned())
             }
             Self::EucJp => {
                 let (result, _enc, err) = EUC_JP.decode(bytes);
                 if err {
-                    return Err("Failed to decode the found string to EUC-JP");
+                    return Err("Failed to decode the found string to EUC-JP".to_string());
                 }
                 Ok(result.into_owned())
             }
             Self::Iso2022Jp => {
                 let (result, _enc, err) = ISO_2022_JP.decode(bytes);
                 if err {
-                    return Err("Failed to decode the found string to ISO-2022-JP");
+                    return Err("Failed to decode the found string to ISO-2022-JP".to_string());
                 }
                 Ok(result.into_owned())
             }
+            Self::Utf8 => Ok(String::from_utf8(bytes.to_vec())
+                .unwrap_or_else(|err| format!("Invalid UTF-8 sequence: {err}"))),
         }
     }
 

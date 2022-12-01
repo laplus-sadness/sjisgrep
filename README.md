@@ -16,7 +16,7 @@ Usage: sjisgrep [OPTIONS] <PATTERN> <FILE> [ENCODING]
 Arguments:
   <PATTERN>   Pattern that will be searched in the binary
   <FILE>      Path of the binary
-  [ENCODING]  Encoding of the pattern [default: shift-jis] [possible values: shift-jis, euc-jp, iso2022-jp]
+  [ENCODING]  Encoding of the pattern [default: shift-jis] [possible values: shift-jis, euc-jp, iso2022-jp, utf8]
 
 Options:
   -b, --beginning  Return the address related to the first character of the string found, not the pattern
