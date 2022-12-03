@@ -78,7 +78,9 @@ impl Encoding {
             .position(|&i| i == 0)
             .ok_or("Failed to find the end of the string that contains the pattern")?;
         let entire_string_bytes = &text[start - beginning..start + end];
-        let entire_string = self.decode(entire_string_bytes)?;
+        let entire_string = self
+            .decode(entire_string_bytes)
+            .unwrap_or_else(|err| err.to_string());
         let address = if show_beginning {
             start - beginning
         } else {
